@@ -9,7 +9,7 @@ module.exports = function(deployer) {
   deployer.deploy(DSSafeAddSub);
   deployer.link(usingOraclize, Adoption);
   deployer.link(DSSafeAddSub, Adoption);
-  deployer.link(strings, Adoption);
+  //deployer.link(strings, Adoption);
   deployer.deploy(Adoption);
 
   // deployer.deploy(usingOraclize, {overwrite: false}).then(function() {
