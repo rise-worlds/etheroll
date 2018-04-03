@@ -1,18 +1,18 @@
 /* @preserve
  * The MIT License (MIT)
- * 
+ *
  * Copyright (c) 2013-2015 Petka Antonov
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.  IN NO EVENT SHALL THE
@@ -20,7 +20,7 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- * 
+ *
  */
 /**
  * bluebird build version 3.1.1
@@ -55571,9 +55571,12 @@ require=function t(e,n,r){function o(a,s){if(!n[a]){if(!e[a]){var c="function"==
     });
 })(jQuery);
 
+$(function() {
+    $(window).load(function() {
+        $.getJSON('Adoption.json', function(data) {
 
 
-$(document).ready(function () {
+// $(document).ready(function () {
 
 //web3 connection
     if (typeof web3 !== 'undefined') {
@@ -55761,7 +55764,7 @@ $(document).ready(function () {
         updateBetData();
     });
 
-    var _contractAddress = '0x1B8451D81b31f7058416B73E9C491024E7008906';
+    var _contractAddress = '0x2818cd7927cec7ff2b3ad3d265312f96c59dc5d8';
     var abi = [
         {
             "constant": false,
@@ -56453,6 +56456,11 @@ $(document).ready(function () {
     var _etherFlip = web3.eth.contract(abi);
     var etherflip = _etherFlip.at(_contractAddress);
 
+    var AdoptionArtifact = data;
+    var Adoption = TruffleContract(AdoptionArtifact);
+    // set the provider for our contract
+    Adoption.setProvider(web3);
+
     $('.generating-normal').show();
     $('.generating-wait').hide();
 
@@ -56473,6 +56481,18 @@ $(document).ready(function () {
         _account = accounts[0];
 
         loadData();
+
+        Adoption.playerRollDice.sendTransaction(
+            _rollUnder, {
+                from: _account,
+                value: $(".bet-amount-wei").val(),
+                to: _contractAddress,
+                gas: 250000
+            }, function (err, transactionHash) {
+                if (transactionHash) {
+
+                }
+            });
 
         //show banner data when connected
         $(".banner-data-section").show();
@@ -56942,6 +56962,8 @@ $(document).ready(function () {
     $(".showtxhash").click(function() {
         $(".txhash").toggle( "fast", function() { });
     });
+});
+});
 });
 
 /*! odometer 0.4.6 */
