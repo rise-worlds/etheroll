@@ -56626,9 +56626,9 @@ $(document).ready(function () {
         });
         _blocksToGo = (_blockNumberAtTimeOfBet + 3) - theBlockNumberNow;
         if (_blocksToGo > 0) {
-            $('#blocks-to-go').val('Mining ~' + _blocksToGo + ' blocks...');
+            $('#blocks-to-go').val('正在采集 ~' + _blocksToGo + ' 块...');
         } else {
-            $('#blocks-to-go').val('Receiving result...');
+            $('#blocks-to-go').val('正在接收结果...');
         }
     }
 
