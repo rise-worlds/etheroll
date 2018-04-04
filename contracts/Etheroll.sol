@@ -1,10 +1,8 @@
 pragma solidity ^0.4.17;
 
-import "./oraclizeAPI_0.4.sol";
 import "./strings.sol";
-import "./DSSafeAddSub.sol";
 
-contract Adoption is usingOraclize, DSSafeAddSub {
+contract Etheroll {
 
   using strings for *;
 
@@ -42,14 +40,6 @@ contract Adoption is usingOraclize, DSSafeAddSub {
   modifier payoutsAreActive {
       if(payoutsPaused == true) throw;
   _;
-  }
-
-  /*
-    * checks only Oraclize address is calling
-  */
-  modifier onlyOraclize {
-      if (msg.sender != oraclize_cbAddress()) throw;
-      _;
   }
 
   /*
@@ -124,12 +114,12 @@ contract Adoption is usingOraclize, DSSafeAddSub {
   /*
    * init
    */
-  function Adoption() {
+  function Etheroll() {
     owner = msg.sender;
     treasury = msg.sender;
-    oraclize_setNetwork(networkID_auto);
-    /* use TLSNotary for oraclize call */
-    oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
+    // oraclize_setNetwork(networkID_auto);
+    // /* use TLSNotary for oraclize call */
+    // oraclize_setProof(proofType_TLSNotary | proofStorage_IPFS);
     /* init 990 = 99% (1% houseEdge)*/
     ownerSetHouseEdge(990);
     /* init 10,000 = 1%  */
@@ -138,9 +128,14 @@ contract Adoption is usingOraclize, DSSafeAddSub {
     ownerSetMinBet(100000000000000000);
     /* init gas for oraclize */
     gasForOraclize = 235000;
-    /* init gas price for callback (default 20 gwei)*/
-    oraclize_setCustomGasPrice(20000000000 wei);
+    // /* init gas price for callback (default 20 gwei)*/
+    // oraclize_setCustomGasPrice(20000000000 wei);
   }
+
+  function rand() public   returns(uint256) {
+        uint256 random = uint256(keccak256(block.difficulty,now));
+        return  random;
+    }
 
   /*
    * public function
@@ -157,7 +152,7 @@ contract Adoption is usingOraclize, DSSafeAddSub {
      * only the apiKey is encrypted
      * integer query is in plain text
      */
-    bytes32 rngId = oraclize_query("nested", "[URL] ['json(https://api.random.org/json-rpc/1/invoke).result.random[\"serialNumber\",\"data\"]', '\\n{\"jsonrpc\":\"2.0\",\"method\":\"generateSignedIntegers\",\"params\":{\"apiKey\":${[decrypt] BKg3TCs7lkzNr1kR6pxjPCM2SOejcFojUPMTOsBkC/47HHPf1sP2oxVLTjNBu+slR9SgZyqDtjVOV5Yzg12iUkbubp0DpcjCEdeJTHnGwC6gD729GUVoGvo96huxwRoZlCjYO80rWq2WGYoR/LC3WampDuvv2Bo=},\"n\":1,\"min\":1,\"max\":100,\"replacement\":true,\"base\":10${[identity] \"}\"},\"id\":1${[identity] \"}\"}']", gasForOraclize);
+    bytes32 rngId = keccak256(block.difficulty,now);
 
     /* map bet id to this oraclize query */
     playerBetId[rngId] = rngId;
@@ -175,31 +170,24 @@ contract Adoption is usingOraclize, DSSafeAddSub {
     if(maxPendingPayouts >= contractBalance) throw;
     /* provides accurate numbers for web3 and allows for manual refunds in case of no oraclize __callback */
     LogBet(playerBetId[rngId], playerAddress[rngId], safeAdd(playerBetValue[rngId], playerProfit[rngId]), playerProfit[rngId], playerBetValue[rngId], playerNumber[rngId]);
-  }
 
-  /*
-   * semi-public function - only oraclize can call
-   */
-  /*TLSNotary for oraclize call */
-	function __callback(bytes32 myid, string result, bytes proof) public
-		onlyOraclize
-		payoutsAreActive
-	{
+    var myid = rngId;
+    bytes memory proof = new bytes(10);
     /* player address mapped to query id does not exist */
     if (playerAddress[myid]==0x0) throw;
 
     /* keep oraclize honest by retrieving the serialNumber from random.org result */
-    var sl_result = result.toSlice();
-    sl_result.beyond("[".toSlice()).until("]".toSlice());
-    uint serialNumberOfResult = parseInt(sl_result.split(', '.toSlice()).toString());
+    // var sl_result = result.toSlice();
+    // sl_result.beyond("[".toSlice()).until("]".toSlice());
+    uint serialNumberOfResult = uint(rand());
 
     /* map random result to player */
-    playerRandomResult[myid] = parseInt(sl_result.beyond("[".toSlice()).until("]".toSlice()).toString());
+    playerRandomResult[myid] = (rand());
 
     /* produce integer bounded to 1-100 inclusive
     *  via sha3 result from random.org and proof (IPFS address of TLSNotary proof)
     */
-    playerDieResult[myid] = uint(sha3(playerRandomResult[myid], proof)) % 100 + 1;
+    playerDieResult[myid] = uint(rand()) % 100 + 1;
 
     /* get the playerAddress for this query id */
     playerTempAddress[myid] = playerAddress[myid];
@@ -224,28 +212,6 @@ contract Adoption is usingOraclize, DSSafeAddSub {
 
     /* total wagered */
     totalWeiWagered += playerTempBetValue[myid];
-
-    /*
-     * refund
-     * if result is 0 result is empty or no proof refund original bet value
-     * if refund fails save refund value to playerPendingWithdrawals
-     */
-    if(playerDieResult[myid] == 0 || bytes(result).length == 0 || bytes(proof).length == 0 || playerRandomResult[myid] == 0){
-      LogResult(serialNumberOfResult, playerBetId[myid], playerTempAddress[myid], playerNumber[myid], playerDieResult[myid], playerTempBetValue[myid], 3, proof, playerRandomResult[myid]);
-
-      /*
-      * send refund - external call to an untrusted contract
-      * if send fails map refund value to playerPendingWithdrawals[address]
-      * for withdrawal later via playerWithdrawPendingTransactions
-      */
-      if(!playerTempAddress[myid].send(playerTempBetValue[myid])){
-        LogResult(serialNumberOfResult, playerBetId[myid], playerTempAddress[myid], playerNumber[myid], playerDieResult[myid], playerTempBetValue[myid], 4, proof, playerRandomResult[myid]);
-        /* if send failed let player withdraw via playerWithdrawPendingTransactions */
-        playerPendingWithdrawals[playerTempAddress[myid]] = safeAdd(playerPendingWithdrawals[playerTempAddress[myid]], playerTempBetValue[myid]);
-      }
-
-      return;
-    }
 
     /*
     * pay winner
@@ -366,12 +332,12 @@ contract Adoption is usingOraclize, DSSafeAddSub {
     setMaxProfit();
   }
 
-  /* set gas price for oraclize callback */
-  function ownerSetCallbackGasPrice(uint newCallbackGasPrice) public
-		onlyOwner
-	{
-    oraclize_setCustomGasPrice(newCallbackGasPrice);
-  }
+  // /* set gas price for oraclize callback */
+  // function ownerSetCallbackGasPrice(uint newCallbackGasPrice) public
+	// 	onlyOwner
+	// {
+  //   oraclize_setCustomGasPrice(newCallbackGasPrice);
+  // }
 
   /* set gas limit for oraclize query */
   function ownerSetOraclizeSafeGas(uint32 newSafeGasToOraclize) public
@@ -476,4 +442,45 @@ contract Adoption is usingOraclize, DSSafeAddSub {
 	{
 		suicide(owner);
 	}
+
+      function safeToAdd(uint a, uint b) internal returns (bool) {
+        return (a + b >= a);
+    }
+    function safeAdd(uint a, uint b) internal returns (uint) {
+        if (!safeToAdd(a, b)) throw;
+        return a + b;
+    }
+
+    function safeToSubtract(uint a, uint b) internal returns (bool) {
+        return (b <= a);
+    }
+
+    function safeSub(uint a, uint b) internal returns (uint) {
+        if (!safeToSubtract(a, b)) throw;
+        return a - b;
+    }
+
+    // parseInt
+    function parseInt(string _a) internal returns (uint) {
+        return parseInt(_a, 0);
+    }
+
+    // parseInt(parseFloat*10^_b)
+    function parseInt(string _a, uint _b) internal returns (uint) {
+        bytes memory bresult = bytes(_a);
+        uint mint = 0;
+        bool decimals = false;
+        for (uint i=0; i<bresult.length; i++){
+            if ((bresult[i] >= 48)&&(bresult[i] <= 57)){
+                if (decimals){
+                   if (_b == 0) break;
+                    else _b--;
+                }
+                mint *= 10;
+                mint += uint(bresult[i]) - 48;
+            } else if (bresult[i] == 46) decimals = true;
+        }
+        if (_b > 0) mint *= 10**_b;
+        return mint;
+    }
 }

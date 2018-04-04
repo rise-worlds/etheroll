@@ -2,10 +2,6 @@
 <html class="body">
 <head>
     <title>DiceRoll :: Ethereum casino :: Ether gambling</title>
-    <meta name="description"
-          content="Provably fair, de-centralized Ethereum casino - gamble online using Ether on the Ethereum network - smart-contract gambling. House edge only 1%."/>
-    <meta name="keywords"
-          content="Ether, gambling, games, Ethereum, wei, finney, ether, ethereum gambling, de-centralized, de-centralised, gamble, Dapp, Ðapp, provably, fair, provably fair, crypto-currency, cryptocurrency, crypto, crypto-currency, cryptocurrency, bitcoin"/>
     <meta name="robots" content="index,follow"/>
     <meta charset="utf-8">
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon"/>
@@ -132,20 +128,16 @@
         <div class="full">
             <div class="alert">
                 <div class="desktop-only banner-data-section" style="display:none;">
-                    <div class="banner-data"><div class="banner-data-num odometer die-result-total-wei-wagered" style="font-size:35px;height:45px;">0</div><p>Ether wagered</p></div>
-                    <div class="banner-data"><div class="banner-data-num odometer banner-data-num die-result-total-wei-won" style="font-size:35px;height:45px;">0</div><p>Ether won</p></div>
-                    <div class="banner-data"><div class="banner-data-num odometer banner-data-num die-result-total-bets" style="font-size:35px;height:45px;">0</div><p>Rolls</p></div>
+                    <div class="banner-data"><div class="banner-data-num odometer die-result-total-wei-wagered" style="font-size:35px;height:45px;">0</div><p>奖池</p></div>
+                    <div class="banner-data"><div class="banner-data-num odometer banner-data-num die-result-total-wei-won" style="font-size:35px;height:45px;">0</div><p>奖金</p></div>
+                    <div class="banner-data"><div class="banner-data-num odometer banner-data-num die-result-total-bets" style="font-size:35px;height:45px;">0</div><p>局数</p></div>
                     <div style="clear:both"></div>
                 </div>
-                <h1>Our Ethereum dice game is provably-fair, has a low 1% house edge and no sign-ups or deposits.</h1>
+                <h1>基于以太坊可证公平的骰子游戏，1%的佣金，不用注册和充值。</h1>
 
-                <h2>Etheroll is an Ethereum smart contract for placing bets on our <em>provably-fair</em> dice game
-                    using
-                    Ether with
-                    <em>no deposits or sign-ups</em>.</h2>
+                <h2>Diceroll是一份基于以太坊的智能合约，用于<em>可证公平</em>的骰子游戏上下注，使用以太坊<em>不用注册或充值</em>。</h2>
 
-                <h2>Each dice roll is provably random and cryptographically secure thanks to the nature of the Ethereum
-                    blockchain.</h2>
+                <h2>每次下注都可以证明是随机和数据安全的，这是因为基于以太坊区块链功能。</h2>
             </div>
 
         </div>
@@ -158,13 +150,8 @@
             <div id="tab">
                 <ul class="resp-tabs-list vert">
                     <li>Play</li>
-                    <li>Your Results</li>
-                    <li>Latest Results</li>
-                    <li>How to Play</li>
-                    <li>FAQ</li>
-                    <!--<li>Provably-fair</li>-->
-                    <li>Support</li>
-                    <li>Terms</li>
+                    <li>你的结算单</li>
+                    <li>最新结算单</li>
                 </ul>
 
                 <div class="resp-tabs-container vert ">
@@ -178,17 +165,17 @@
                             </div>
                         </div>-->
                         <div class="jumbotron shadow">
-                            <h3 class="green generating-normal">Place your bets please</h3>
+                            <h3 class="green generating-normal">请下注</h3>
 
-                            <h3 class="red generating-wait">No more bets please</h3>
+                            <h3 class="red generating-wait">请不要再下注了</h3>
 
                             <div class="bet-container">
-                                <h5>1. Set bet size (max profit <span class="max-bet">0</span>)</h5>
+                                <h5>1. 设置下注大小 (最大收益 <span class="max-bet">0</span>)</h5>
                                 <input id="the-bet" type="number" pattern="[1-100]" min="0.01" step="0.01"
                                        class="bet-amount green" placeholder="1" value="1">
                                 <input id="the-bet-hidden" type="hidden" pattern="[1-100]" min="0.01" step="0.01"
                                        class="bet-amount-wei green" placeholder="1" value="1">
-                                <p>or quickbet amount</p>
+                                <p>快速下注</p>
 
                                 <div class="pre-paid-container">
                                     <button id="min" class="choose pre-paid">
@@ -213,12 +200,12 @@
                                         <strong>max</strong>
                                     </button>-->
                                 </div>
-                                <div class="warning-max-bet red">Maximum wager is <span class="max-bet"></span></div>
+                                <div class="warning-max-bet red">最大赌注 <span class="max-bet"></span></div>
 
                                 <div class="warning-min-bet red"></div>
 
                                 <div class="slider-container">
-                                    <h5>2. Adjust your chance to win %</h5>
+                                    <h5>2. 调整胜率 %</h5>
                                     <div class="slider slider-odds" id="slider"></div>
                                     <div id="ruler">
                                         <p class="one">1%</p>
@@ -227,46 +214,46 @@
                                         <p class="seventy-five">75%</p>
                                         <p class="hundred">100%</p>
                                     </div>
-                                    <label for="chanceOfWin">Win chance</label>
+                                    <label for="chanceOfWin">胜率</label>
                                     <input type="text" id="chanceOfWin" readonly>
                                 </div>
                             </div>
                         </div>
                         <div class="jumbotron bet-slip shadow">
-                            <h3 id="title-bet-slip">Bet slip</h3>
+                            <h3 id="title-bet-slip">请下注</h3>
                             <!--<div style="width:70%;margin:0 auto;">-->
                             <button id="place-bet" class="choose place-bet" style="">
-                                <strong>ROLL!</strong>
+                                <strong>下注!</strong>
                             </button>
                             <div>
-                                <small class="showtxhash" style="cursor:pointer;">Show roll TxHash</small>
+                                <small class="showtxhash" style="cursor:pointer;">显示下注单号</small>
                             </div>
                             <div>
-                                <small ><span class="txhash">Please roll first</span></small>
+                                <small ><span class="txhash">请先下注</span></small>
                             </div>
                             <!--<a id="place-bet-mask"  data-toggle="modal" data-target="#myModal" title="Use Metamask">
                                 or <img src="./images/metamask.png" >
                             </a>-->
                             <!--</div>-->
                             <div class="your-bet-container" style="width:100%; float:left;">
-                                <h5>Roll under</h5>
+                                <h5>点数</h5>
                                 <input type="text" id="bet-number" placeholder="Not set">
-                                <h5>For a profit of</h5>
+                                <h5>当前胜率收益</h5>
                                 <input class="bet-payout" disabled type="number">
-                                <div class="warning-max-profit red">Maximum profit is <span class="max-profit"></span></div>
-                                <h5>Wager</h5>
+                                <div class="warning-max-profit red">最大收益 <span class="max-profit"></span></div>
+                                <h5>注额</h5>
                                 <input class="bet-amount" disabled type="number">
                                 <div>
-                                    <small>commission: <span class="commission">1%</span></small>
+                                    <small>佣金: <span class="commission">1%</span></small>
                                 </div>
                             </div>
                         </div>
                         <div class="jumbotron shadow">
                             <div class="result-container">
 
-                                <h3 class="green generating-normal">Place your bet...</h3>
+                                <h3 class="green generating-normal">请下注...</h3>
 
-                                <h3 class="green generating-wait">Bet in progress...</h3>
+                                <h3 class="green generating-wait">	正在押注...</h3>
 
                                 <div class="orange generating-wait"><a href="#roll_in_progress"><input type="text"
                                                                                                        class="orange"
@@ -275,449 +262,61 @@
                                                                                                        value="Mining 3 blocks..."></a>
                                 </div>
                                 <div class="odometer die-result" style="">0</div>
-                                <p class="" id=''>Latest result</p>
+                                <p class="" id=''>最新结果 </p>
 
                                 <p class="" id='latest-time'>
 
                                 <div class="result-time"></div>
                                 </p>
-                                <h2 class="green" id="win">PLAYER WINS!</h2>
+                                <h2 class="green" id="win">玩家赢!</h2>
 
-                                <h2 class="red" id="lose">HOUSE WINS</h2>
-                                <h2 id="refund">REFUND - NO RESULT</h2>
+                                <h2 class="red" id="lose">庄家赢!</h2>
+                                <h2 id="refund">退款-无结果</h2>
                             </div>
                         </div>
                         <div class="clearfix"></div>
                     </div>
                     <div>
-                        <p>NOTE: Live game stats are only compiled whilst you are actively connected to an Ethereum
-                            node and synced to the latest block. We display results from the most recent 10,000 blocks.</p>
-                        <h4 class="green">Your Latest Results</h4>
+                        <p>注意：只有在你连接到Ethereum节点并同步到最新的块时，才会显示实时游戏统计数据。我们显示最近10，000个区块的结果。</p>
+                        <h4 class="green">你的最新结果</h4>
                         <h2>Since block <span class="blockNumber"></span></h2>
                         <div class="stats-key">
-                            <p><span class="result Win"></span> Win</p>
-                            <p><span class="result Lose"></span> No win</p>
-                            <p><span class="result Refunded"></span> Refunded</p>
-                            <p><span class="result send-fail"></span> Failed send - view the 'support' tab in case of a
-                                failed send during your game play</p>
+                            <p><span class="result Win"></span> 赢</p>
+                            <p><span class="result Lose"></span> 输</p>
+                            <p><span class="result Refunded"></span> 退还</p>
+                            <p><span class="result send-fail"></span> 下注失败 - 查看“支持”选项卡以查看失败原因</p>
                         </div>
                         <table class="tg yours">
                             <tr class="desktop-only resultsTitle">
-                                <th class="tg-s6z2">Bet ID</th>
-                                <th class="tg-s6z2">Address</th>
-                                <th class="tg-s6z2">Target</th>
-                                <th class="tg-s6z2">Rolled</th>
-                                <th class="tg-s6z2">Result</th>
+                                <th class="tg-s6z2">下注单号</th>
+                                <th class="tg-s6z2">地址</th>
+                                <th class="tg-s6z2">点数</th>
+                                <th class="tg-s6z2">庄家点数</th>
+                                <th class="tg-s6z2">结果</th>
                                 <th class="tg-s6z2">ETH</th>
                             </tr>
                         </table>
-
-
                     </div>
                     <div>
-                        <p>NOTE: Live game stats are only compiled whilst you are actively connected to an Ethereum
-                            node and synced to the latest block. We display results from the most recent 10,000 blocks.</p>
-                        <h4 class="green">Latest Results</h4>
+                        <p>注意：只有在你连接到Ethereum节点并同步到最新的块时，才会显示实时游戏统计数据。我们显示最近10，000个区块的结果。</p>
+                        <h4 class="green">最新结果</h4>
                         <h2>Since block <span class="blockNumber"></span></h2>
                         <div class="stats-key">
-                            <p><span class="result Win"></span> Win</p>
-                            <p><span class="result Lose"></span> No win</p>
-                            <p><span class="result Refunded"></span> Refunded</p>
-                            <p><span class="result send-fail"></span> Failed send - view the 'support' tab in case of a
-                                failed send during your game play</p>
+                            <p><span class="result Win"></span> 赢</p>
+                            <p><span class="result Lose"></span> 输</p>
+                            <p><span class="result Refunded"></span> 退还</p>
+                            <p><span class="result send-fail"></span> 下注失败 - 查看“支持”选项卡以查看失败原因</p>
                         </div>
                         <table class="tg all">
                             <tr class="desktop-only resultsTitle">
-                                <th class="tg-s6z2">Bet ID</th>
-                                <th class="tg-s6z2">Address</th>
-                                <th class="tg-s6z2">Target</th>
-                                <th class="tg-s6z2">Rolled</th>
-                                <th class="tg-s6z2">Result</th>
+                                <th class="tg-s6z2">下注单号</th>
+                                <th class="tg-s6z2">地址</th>
+                                <th class="tg-s6z2">点数</th>
+                                <th class="tg-s6z2">庄家点数</th>
+                                <th class="tg-s6z2">结果</th>
                                 <th class="tg-s6z2">ETH</th>
                             </tr>
                         </table>
-                    </div>
-                    <div>
-                        <h4 class="green nomargintop">How to</h4>
-                        <a href="#instructions">Play The Game</a><br/>
-                        <a href="#mist">Play Using Mist Browser</a><br/>
-                        <a href="#geth">Play Using Metamask</a><br/>
-                        <!--<a href="#ethereum-wallet">Play Using Ethereum Wallet</a><br/>-->
-                        <!--<a href="#geth">Play Using Geth</a><br/>-->
-                        <a href="#hot-tip">Hot Tips</a><br/>
-
-                        <h4><a id="instructions">Play The Game</a></h4>
-                        <p>You are betting on the result of a 100 sided dice roll. The
-                            result of the dice roll is bounded to 1-100. To win, the dice result needs to be lower
-                            than your number. If the dice result is lower than your number you win!</p>
-                        <ol class="bold">
-                            <li>Set the bet amount (units of Ether).</li>
-                            <li>Adjust the slider to change your number and percentage chance of winning.</li>
-                            <li>To win, the dice result needs to be lower than your number.</li>
-                            <li>Click 'ROLL!'</li>
-                            <li>If the result of the dice roll is lower than your 'Roll under'' number (as shown in the
-                                middle colum), you win immediately!
-                            </li>
-                            <li>If you lose, the contract will send you back 1 Wei</li>
-                        </ol>
-
-                        <p>Note: In the case of a win a 1% commission is subtracted from the total amount returned to
-                            the
-                            player. You will incur a small gas charge to place the bet. Etheroll does not receive gas.
-                            Gas
-                            is used to maintain the Ethereum blockchain.</p>
-
-                        <h4><a id="mist">Play Using Mist Browser</a></h4>
-
-                        <ol>
-                            <li>If you haven't already, download and install <a
-                                    href="https://github.com/ethereum/mist/releases">Mist</a> browser.
-                            </li>
-                            <li>Using the Mist browser visit <a href="https://etheroll.com">Etheroll</a>.</li>
-                            <li>Sync to the latest block on the Ethereum network.</li>
-                            <li>Click 'connect' in the top right hand side of Mist and authorize the account you wish to play with.</li>
-                            <li>Adjust your bet size and % chance to win on the home page.</li>
-                            <li>Click roll to confirm your bet with Mist.</li>
-                            <li>Good luck!</li>
-                        </ol>
-                        <h4><a id="geth">Play Using Metamask</a></h4>
-                        <p>To place a bet using Metamask</p>
-                        <ol>
-                            <li>If you haven't already, download and install <a href="https://metamask.io/">Metamask</a>.
-                            </li>
-                            <li>Enable the extension and sign in to your Metamask account.</li>
-                            <li>Using the Chrome browser visit <a href="https://etheroll.com">Etheroll</a>.</li>
-                            <li>Adjust your bet size and % chance to win on the home page.</li>
-                            <li>Click roll to confirm your bet with Metamask.</li>
-                            <li>Good luck!</li>
-                        </ol>
-                        <!--
-                        <h4 class="green"><a id="ethereum-wallet">Play Using Ethereum Wallet</a></h4>
-
-                        <p>When using Ethereum Wallet to place bets, you will need to place and check for wins inside of
-                            Ethereum Wallet. You will not be able to use our web-based GUI to interact with the game.</p>
-                        <p>You can download and install the latest Ethereum Wallet here <a
-                                href="https://github.com/ethereum/mist/releases">https://github.com/ethereum/mist/releases</a>
-                        </p>
-                        <p>You will first need to 'Watch the Contract':</p>
-
-                        <ol>
-                            <li>Click the 'Contracts' icon</li>
-                            <li>Click Watch contract (not deploy contract)</li>
-                            <li>For 'Contract name' use "Etheroll"</li>
-                            <li>For 'Contract address' use the following address:
-                                <pre class="prettyprint">
-
-    //TBC
-                    </pre>
-                            </li>
-                            <li>For 'JSON interface' enter the following:
-                                <pre class="prettyprint">
-
-    //TBC
-                    </pre>
-                            </li>
-                            <li>Click OK</li>
-                            <li>Under 'Custom contracts', click the contract named Etheroll that you just
-                                added and then choose the function under the <strong>'Write to contract'</strong> title.
-                                There will be multiple functions available in the dropdown menu, choose the one named
-                                'playerRollDice'.
-                            </li>
-                            <li>Select a number between 2-99 for 'rollUnder', and in the <strong>Send</strong>
-                                field, set your wager in units of Ether (minimum bet size is currently <strong
-                                        class="min-bet"></strong> and the maximum bet
-                                is currently <strong class="max-bet"></strong>).
-                            </li>
-                            <li>Press execute, you will be prompted to enter your password to submit the bet,
-                                once submitted, your transaction will be processed in the next block and your bet outcome
-                                will be decided in the following blocks (about 3).
-                            </li>
-                        </ol>
-                        -->
-                        <!--<h4><a id="geth">Play Using Geth</a></h4>
-                        <p><strong>Note:</strong> The following instructions can expose your wallet to security risk, due to
-                            the fact that you need to unlock your account to interact with our Dapp. We strongly recommend
-                            you <a href="#mist">connect to the game using the Mist browser</a>.</p>
-
-                        <p>To play using Geth, first download and install the Geth client, which is available here <a
-                                href="https://github.com/ethereum/go-ethereum/wiki/geth">https://github.com/ethereum/go-ethereum/wiki/geth</a>
-                        </p>
-
-                        <p class="green"><strong>Step 1</strong>:</p>
-
-                        <p>To connect to Etheroll and place bets, you will first need to sync Geth to the latest block. Once
-                            you have synced completely, you can then start Geth with the following command:</p>
-
-                        <p>
-                        <pre class="prettyprint">
-
-    geth --rpc --rpccorsdomain="https://etheroll.com" --unlock="your_wallet_address"
-                        </pre>
-                        </p>
-
-                        <p><strong>Note:</strong></p>
-
-                        <p>If you would prefer just to watch some games without unlocking your account, start Geth with the
-                            following command:</p>
-
-                        <p>
-                        <pre class="prettyprint">
-
-    geth --rpc --rpccorsdomain="https://etheroll.com"
-                        </pre>
-                        </p>
-
-                        <p>However you will not be able to participate in the game until you unlock your account.</p>
-
-                        <p>If you have security concerns over unlocking your account, it might also be best to unlock an
-                            account with minimal funds.</p>
-
-                        <p class="green"><strong>Step 2</strong>:</p>
-
-                        <p><a href="./">Visit our dice game</a> page and you should see your wallet address and balance in
-                            the
-                            top right hand corner. Good luck!</p>-->
-
-                        <h4><a id="hot-tip">Hot tips</a></h4>
-                        <p>Moving the slider allows you to adjust the odds to suit your own gambling style. As you
-                            adjust
-                            the slider, your odds of winning change.</p>
-                    </div>
-                    <div>
-                        <h4 class="green nomargintop">FAQ</h4>
-
-                        <p>Etheroll enables individuals to place bets and choose their own odds, on the result of a 100-sided dice roll, without sign-ups or user deposits, using Ether – the 2nd most popular cryptocurrency in the world. </p>
-
-                        <p>Etheroll is an Ethereum smart-contract and Dapp which provides a provably-fair dice game leveraging the distributed power of transparent smart-contracts to decentralize its codebase whilst exposing an intuitive web-based interface to players.</p>
-
-                        <h4 class="green">How does it work?</h4>
-
-                        <p>Etheroll is based on an Ethereum smart contract. It is executed by the Ethereum network, which
-                            enables it to operate in a partially decentralized fashion to provide a transparent, provably
-                            fair
-                            gambling service.</p>
-
-                        <p>Our random number is the only external dependency for our smart-contract as the nature of blockchains make it unsafe for us (not you) to calculate
-                            random data inside the blockchain in a secure way.</p>
-
-                        <p>Once our Ethereum smart contract receives a random number from random.org, the results are
-                            calculated against the number you submitted
-                            and winning bets are paid out instantly.</p>
-
-                        <h4 class="green">What is the house edge?</h4>
-
-                        <p>Our house-edge is a low 1%.</p>
-
-                        <h4 class="green">Why can't I place a bet?</h4>
-
-                        <p>To place a bet first you will need to install Mist browser and sync to the best block on the Ethereum network. For details on how to install Mist browser, please visit our 'How to Play' tab.</p>
-
-                        <h4 class="green">Is it provably-fair?</h4>
-
-                        <p>Etheroll is 100% provably-fair. We don't use the number returned from random org as our final number (which means in the remote edge-case chance there is ever a rogue employee at random org, they will not be able to exploit our game, as they do not control our final number), on top of this, we keep our oracle honest by recording the serial numbers returned from our random org responses (which increment by 1 for each response). This means our oracle cannot cheat us or our players without it being detected by submitting multiple requests to random org and only submitting suitable results along with their corresponding TLSNotary proof (TLSNotary proof alone is not enough, because the oracle could simply make multiple requests). Our system is 100% provably-fair. Anybody can view the serial number responses by watching event filters in Ethereum Wallet/Mist, coupled with the corresponding TLSNotary proofs. Of course, you can always browse the source code of our smart-contract under the 'Smart Contract' tab as well as check the verification link to ensure our code does exactly what we say it does. Our game is 100% provably-fair and it is something we are very proud of.</p>
-
-                        <h4 class="green">What is the ÐICE token?</h4>
-
-                        <p>Our ÐICE token allows you to bet on the house with the house advantage in your favor. When you purchase ÐICE tokens you own a portion of the bankroll, proportional to the amount of ÐICE tokens you hold. There will only ever be a fixed total supply of 7,001,622.64 ÐICE tokens. ÐICE tokens are available on <a href="https://etherdelta.github.io/#DICE-ETH">EtherDelta</a> exchange. Once you are a ÐICE token holder, every 12 weeks you will be granted special rights and priviledges within the platform that enable you to draw down the profits your ÐICE tokens generated by playing every game with the house edge working to their advantage. For more details on ÐICE and the platform in general, you can browse our <a href="http://crowdfund.etheroll.com/etheroll-whitepaper.pdf">whitepaper</a> (PDF).</p>
-
-                        <h4 class="green">How do I claim my ÐICE token rewards?</h4>
-
-                        <p>We are currently in the process of writing our rewards smart-contract. Once it has passed internal testing and independant security audits, rewards will be available to token holders from our website every 12 weeks for a period of 5 days. As a ÐICE token holder the process to claim the ether you earned will be as simple as one click of a button on our website and confirming your password using Mist browser.</p>
-
-                        <h4 class="green">How will I know it is time to collect my ÐICE rewards?</h4>
-
-                        <p>A new section will be added soon to our website that will display a countdown to the reward periods. You can also follow our <a href="https://etheroll.wordpress.com">blog</a> to receive email updates from us.</p>
-
-                        <h4 class="green">What happens to my ÐICE rewards if I don't claim them?</h4>
-
-                        <p>It is important that you claim your rewards during each reward period. If you do not claim your allocated rewards during the rewards period, your rewards are sent back into the community bankroll and distributed pro-rata during the next rewards phase.</p>
-
-                        <h4 class="green">I placed a bet but received no result using Metamask. Why?</h4>
-
-                        <p>We do not currently fully support Metamask. We currently fully support Mist browser and recommend using it if you experience this problem with Google Chrome + Metamask. It is likely that you did receive a result from us but Metamask did not notify you of the result. Check your wallet address (<span
-                                class="account"></span>) on etherscan.io. Check for recent transactions coming from us under the 'internal transactions' tab. We send 1 wei to you in the case of a loss. Your winnings will also show under 'internal transactions'. We have raised the issue with Metamask team and they are working on a fix.</p>
-
-                        <h4 class="green">I placed a bet but received no result. Why?</h4>
-                        <p>Before emailing support check your wallet address (<span
-                                class="account"></span>) on etherscan.io for recent transactions coming from us under the 'internal transactions' tab. We send 1 wei to you in the case of a loss. Your winnings will also show under 'internal transactions'.</p>
-                        <p>Our oracle checks for any unprocessed bets every 15 minutes. If for any reason you still have not received a result on etherscan.io 20 minutes after placing your bet, please contact support at <a href="mailto:support@etheroll.com">support@etheroll.com</a> with the following information:
-                        <ol>
-                            <li>Your Ethereum wallet address</li>
-                            <li>A description of your issue</li>
-                            <li>Transaction ID (can be found under the roll button on the home page)</li>
-                        </ol>
-
-                        <p> We aim to respond to support requests within 24 hours.
-                            We record the details of every roll into the blockchain, so we should always be
-                            able to
-                            resolve any issue that you may be experiencing.</p>
-
-                        <h4 class="green">How to contact us?</h4>
-
-                        <p>For all contact queries email us at <a href="mailto:support@etheroll.com">support@etheroll.com</a>. We aim to respond to all queries within 24 hours.</p>
-
-                    </div>
-                    <!--<div>
-                        <h4 class="green nomargintop">Provably-fair</h4>
-
-                        <p>Randomness is sourced from <a href="https://www.random.org/">Random.org</a> — which provides true
-                            randomness from atmospheric noise — via <a href="http://www.oraclize.it/">Oraclize.it</a></p>
-
-                        <p>Oraclize provides the IPFS multihash of the <a href="https://docs.oraclize.it/#tlsnotary-proof">TLSNotary
-                            proof</a> to prove data has not been manipulated or changed since Etheroll requested the data
-                            from Random.org. The IPFS multihash points to the contents of the PageSigner TLSNotary file on
-                            IPFS. The IPFS multihash returned for each bet is processed as an event by Etheroll into the
-                            blockchain. We continue to
-                            develop our RNG and strengthen our relationship with <a href="http://www.oraclize.it/">Oraclize.it</a>
-                            in order to
-                            provide the most secure way of generating our random number.</p>
-
-                        <p>The randomness Etheroll requests is an integer between 1-100. The <a
-                                href="https://www.random.org/randomness/">random
-                            number</a> is generated from <a href="https://en.wikipedia.org/wiki/Atmospheric_noise">atmospheric
-                            noise</a> (<a
-                                href="https://www.random.org/integers/?num=1&min=1&max=100&col=1&base=10&format=plain&rnd=new">try
-                            it for yourself</a>).</p>
-
-
-                    </div>-->
-                    <div>
-                        <h4 class="green nomargintop">Support</h4>
-                        <p>We payout all winning bets and/or refunds instantly. However, if for any reason, we were
-                            unable
-                            to
-                            send you Ether from either a win or a refund, you can resolve that with us here.</p>
-                        <p>Account: <strong class="account"></strong></p>
-                        <p>Amount available to withdraw: <strong class="withdrawAvailable"></strong></p>
-                        <p>
-                            <button id="withdrawPending">Withdraw now</button>
-                        </p>
-                        <p>Before emailing support check your wallet address (<span
-                                class="account"></span>) on etherscan.io for recent transactions coming from us under the 'internal transactions' tab. We send 1 wei to you in the case of a loss. Your winnings will also show under 'internal transactions'.</p>
-                        <p>Our oracle checks for any unprocessed bets every 15 minutes. If for any reason you still have not received a result 20 minutes after placing your bet, it is important that you do not place any more bets and that you contact support at <a href="mailto:support@etheroll.com">support@etheroll.com</a> with the following information:
-                        <ol>
-                            <li>Your Ethereum wallet address</li>
-                            <li>Bet value</li>
-                            <li>A description of your issue</li>
-                            <li>The transaction ID. Your most recent transaction id with us is: <span class="txhash"></span></li>
-                        </ol>
-                        <p> We aim to respond to support requests within 24 hours.
-                            We record the details of every roll into the blockchain, so we should always be
-                            able to
-                            resolve any issue that you may be experiencing.</p>
-                    </div>
-
-                    <div>
-                        <h4 class="green nomargintop">Terms</h4>
-
-                        <p>By using and/or accessing any section of etheroll.com ("we","us" or "our"), you ("the
-                            Player")
-                            agree to the following terms of service, any game rules, promotions, bonuses and special
-                            offers
-                            which may be found on the etheroll.com from time to time. Read this terms of service
-                            carefully
-                            before accepting them. If you do not agree to accept and be bound by the terms of service,
-                            please do not continue to use etheroll.com. Your further use of etheroll.com will constitute
-                            your acceptance of terms of service.</p>
-
-                        <p>The player is solely responsible to make sure that he is aware of the current terms and
-                            conditions and we advise the player to check for updates on a regular basis. Etheroll.com
-                            reserves the right to modify the website, services and software and/or change the system
-                            specification requirements necessary to access and use the services at any time without any
-                            prior notice.</p>
-
-                        <p>To play Etheroll you must be at least 18 years of age. The service is not for use by
-                            individuals
-                            under the legal age of majority in their jurisdiction and individuals accessing the service
-                            from
-                            jurisdictions from which it is illegal to do so. Etheroll.com cannot verify the legality of
-                            the
-                            service in each jurisdiction, so it is the user's responsibility to ensure that their usage
-                            is
-                            lawful.</p>
-
-                        <p>You are solely responsible for abiding by any law in your jurisdiction towards online
-                            gambling
-                            with crypto currencies. You acknowledge that the etheroll.com service allows you to play
-                            with
-                            virtual currencies. Therefore, during the normal course of using the service, you may lose
-                            some
-                            or all of the crypto currencies you play with. Under no circumstances will we be liable for
-                            any
-                            of your losses. You are fully aware that there is a risk of losing crypto currencies when
-                            gambling by means of the services and you are fully responsible for any such loss. You agree
-                            that your use of the services is at your sole option, discretion and risk. In relation to
-                            your
-                            losses you shall have no claims whatsoever against etheroll.com</p>
-
-                        <p>Internet gambling may not be legal in some jurisdictions. You understand and accept that
-                            etheroll.com is unable to provide you with any legal advice or assurances in respect of your
-                            use
-                            of services and etheroll.com makes no representations whatsoever as to the legality of
-                            services
-                            in your jurisdiction. Use the services on etheroll.com at your sole option, discretion and
-                            risk,
-                            you are solely responsible for ascertaining whether it is legal in your jurisdiction.</p>
-
-                        <p>Etheroll.com does not intend to enable you to contravene applicable law. You represent,
-                            warrant
-                            and agree to ensure that your use of our services will comply with all applicable laws,
-                            statutes
-                            and regulations. We shall not be responsible for any illegal or unauthorized use of our
-                            services
-                            by you. You fully understand the methods, rules and procedures of the services and Internet
-                            gambling in general.</p>
-
-                        <p>We will never give out any personal information. All information you provide will be used
-                            solely
-                            to operate the etheroll.com service.</p>
-
-                        <p>Anyone who discovers an error or a bugs when using our site should, in the interest of all
-                            users,
-                            immediately file a bug report. If you discover a bug and report it, you will be
-                            rewarded.</p>
-
-                        <p>In the event that a game, network, blockchain or hardware malfunctions, all gameplay during
-                            the
-                            malfunction period will be void and original bets may be lost in a worst case scenario.</p>
-
-                        <p>If you are found to be cheating or abusing your IP address will be banned.</p>
-
-                        <p>To use etheroll.com, Javascript must be enabled in your browser. You must be currently
-                            synched to
-                            the best block on the Ethereum blockchain, otherwise you may lose your original bet.</p>
-
-                        <p>Etheroll.com does not guarantee investment growth. Play and invest are at your own risk.
-                            Never
-                            gamble or invest more than you can afford to lose.</p>
-
-                        <p>We do not accept cash or card deposits, only units of Ether for each individual bet. We hold
-                            no
-                            deposits.</p>
-
-                        <p>Minimum bet 0.1 Ether. Lower amounts will be voided from play and quietly refunded.</p>
-
-                        <p>Maximum profit per roll is 1% of total house bank. Higher amounts will be voided from play and quietly
-                            refunded.</p>
-
-                        <p>Etheroll.com offers no guarantee of availability of service. However, we aim, wherever
-                            technically possible, to provide a largely uninterrupted service. There may, however, be unavoidable periods of downtime (for example, downtime due to server or code maintenance) to
-                            maintain service and data security.</p>
-
-                        <p>The user is solely responsible for any applicable taxes that may be payable on crypto coins
-                            imposed to you through your using the service.</p>
-
-                        <p>Any important service status notices will be announced on twitter and/or on pop-up notice on website.</p>
-
-                        <p>The telecommunications networks and Internet access services required for you to access and
-                            use
-                            the service are entirely beyond the control of etheroll.com, and thus we are in no way
-                            liable
-                            for any outages, slowness, capacity constraints, or other deficiencies effecting the
-                            same.</p>
-
-                        <p>Etheroll.com has the right to modify these terms at any time and without any prior notice.
-                            Changes to the system can also be made without any notice by the administrator.</p>
                     </div>
                 </div>
             </div>
@@ -735,7 +334,7 @@
                 <div class="modal-header">
                     <!--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">×</span></button>-->
-                    <h4 class="modal-title" id="myModalLabel">Terms of use</h4>
+                    <h4 class="modal-title" id="myModalLabel">使用条款</h4>
                 </div>
                 <div class="modal-body" style="text-align:center;">
                     <h3>Status: <span class="green">Online</span></h3>
@@ -745,12 +344,8 @@
                     <!--<h3><span class="orange">We are in the process of updating our game contract and website, we will be back online soon.</span></h3>-->
                     <!--<h4 class="green">Our test-net game is currently paused and will not function as we prepare for live deployment. We are in the process of updating our game contract and will be back online shortly.</h4>-->
                     <p>
-                        By clicking ok or interacting with Etheroll beyond these terms of use, you confirm that you are at least 18 years of age and you represent, warrant and agree to ensure that your
-                        use of
-                        our services will comply with all applicable laws, statutes and regulations. Etheroll.com does not intend
-                        to
-                        enable you to contravene applicable law. Etheroll is not
-                        responsible for any illegal or unauthorized use of our services by you.
+                        单击OK或页面表示你同意使用条款，您确认您至少18岁，并且您代表、保证并同意确保您使用我们的服务将符合所有适用的法律、法规和条例。
+                        我们不打算让您违反适用的法律。我们不对您非法或未经授权使用我们的服务负责。
                     </p>
                     <button type="button" class="btn btn-primary" id="terms-agree">OK</button>
                     <button type="button" class="btn btn-primary" id="terms-disagree">Exit</button>
