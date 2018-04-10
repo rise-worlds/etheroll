@@ -2,13 +2,13 @@ pragma solidity ^0.4.17;
 
 
 contract Etheroll {
-    // /*
-    //   * checks player profit, bet size and player number is within range
-    // */
-    // modifier betIsValid(uint _betSize, uint _playerNumber) {
-    //     if(((((_betSize * (100-(safeSub(_playerNumber,1)))) / (safeSub(_playerNumber,1))+_betSize))*houseEdge/houseEdgeDivisor)-_betSize > maxProfit || _betSize < minBet || _playerNumber < minNumber || _playerNumber > maxNumber) throw;
-    // _;
-    // }
+    /*
+      * checks player profit, bet size and player number is within range
+    */
+    modifier betIsValid(uint _betSize, uint _playerNumber) {
+        require(((((_betSize * (100-(safeSub(_playerNumber,1)))) / (safeSub(_playerNumber,1))+_betSize))*houseEdge/houseEdgeDivisor)-_betSize <= maxProfit || _betSize >= minBet || _playerNumber >= minNumber || _playerNumber <= maxNumber);
+        _;
+    }
 
     /*
       * checks game is currently active
@@ -42,9 +42,9 @@ contract Etheroll {
         _;
     }
 
-    // /*
-    //  * game vars
-    //  */
+    /*
+     * game vars
+     */
     uint constant public maxProfitDivisor = 1000000;
     uint constant public houseEdgeDivisor = 1000;
     uint constant public maxNumber = 99;
@@ -347,8 +347,7 @@ contract Etheroll {
         onlyOwner
     {
         /* restrict each bet to a maximum profit of 1% contractBalance */
-        if (newMaxProfitAsPercent > 10000)
-            throw;
+        assert (newMaxProfitAsPercent <= 10000);
         maxProfitAsPercentOfHouse = newMaxProfitAsPercent;
         setMaxProfit();
     }
@@ -430,7 +429,7 @@ contract Etheroll {
         return (a + b >= a);
     }
     function safeAdd(uint a, uint b) internal pure returns (uint) {
-        if (!safeToAdd(a, b)) throw;
+        assert (safeToAdd(a, b));
         return a + b;
     }
 
@@ -439,7 +438,7 @@ contract Etheroll {
     }
 
     function safeSub(uint a, uint b) internal pure returns (uint) {
-        if (!safeToSubtract(a, b)) throw;
+        assert (safeToSubtract(a, b));
         return a - b;
     }
 

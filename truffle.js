@@ -15,6 +15,14 @@ module.exports = {
     // "morden": {
     //   network_id: 2,
     // },
+    //rinkeby测试网络
+    rinkeby: {
+      host: "127.0.0.1",
+      port: 8545,
+      from:"0xf5ba5e99c049abeb00cd6f242f3337b99ff9f809",
+      network_id: "4",// Match Rinkeby
+      gas:4612388
+    },
     //自定义私用网络
     "test": {
       host: "127.0.0.1",
