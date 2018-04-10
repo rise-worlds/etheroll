@@ -16,7 +16,7 @@ module.exports = {
     //   network_id: 2,
     // },
     //自定义私用网络
-    "staging": {
+    "test": {
       host: "127.0.0.1",
       port: 8545,
       //gas: 1763673286,

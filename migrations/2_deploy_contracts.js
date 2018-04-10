@@ -1,16 +1,8 @@
-var Etheroll = artifacts.require("Etheroll");
-// var usingOraclize = artifacts.require("usingOraclize");
-// var DSSafeAddSub = artifacts.require("DSSafeAddSub");
-var strings = artifacts.require("strings");
-// var SmartBillions = artifacts.require("SmartBillions");
+var Etheroll = artifacts.require("./Etheroll.sol");
+//var oraclizeLib = artifacts.require("./oraclizeLib.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(strings);
-  // deployer.deploy(usingOraclize);
-  // deployer.deploy(DSSafeAddSub);
-  // deployer.link(usingOraclize, Etheroll);
-  // deployer.link(DSSafeAddSub, Etheroll);
-  deployer.link(strings, Etheroll);
+  //deployer.deploy(oraclizeLib);
+  //deployer.link(oraclizeLib,Etheroll);
   deployer.deploy(Etheroll);
-  // deployer.deploy(SmartBillions);
 };

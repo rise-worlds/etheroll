@@ -55764,7 +55764,7 @@ $(document).ready(function () {
         updateBetData();
     });
 
-    var _contractAddress = '0x5978266a8971F98aD5f8789eBc35A96Aa4F17FE9';
+    var _contractAddress = '0xe69812df1c05acadeb8776483473b7ab24a15554';
     var abi = [
         {
           "constant": true,
