@@ -204,6 +204,10 @@ web3.eth.getAccounts(function(error, accounts) {
     }
 
     App.account = accounts[0];
+
+    //show banner data when connected
+    $(".banner-data-section").show();
+    $(".alert h1").addClass('title-connected');
 });
       /*
        * load Adoption.json, save Adoption's ABI
@@ -229,25 +233,6 @@ web3.eth.getAccounts(function(error, accounts) {
                 window.location.href = "http://www.google.com";
             });
 
-            //WITHDRAW PENDING
-            $("#withdrawPending").click(function () {
-                var adoptionInstance;
-                App.contracts.Adoption.deployed().then(function(instance) {
-                    adoptionInstance = instance;
-                    adoptionInstance.playerWithdrawPendingTransactions.sendTransaction(
-                        {
-                            from: _account,
-                            to: _contractAddress
-                        }, function (error, txhash) {
-                            if (!error) {
-
-                            }
-                            else
-                                console.error(error);
-                        }
-                    );
-                });
-            }),
 
             //
             $("#place-bet").click(function () {
